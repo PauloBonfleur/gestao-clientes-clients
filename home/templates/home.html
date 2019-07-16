@@ -11,7 +11,9 @@
     <h1>Seja Bem-Vindo</h1>
 
     {% if user.is_authenticated %}
-        <p>Olá {{ user.username }}</p>
+        <p>Olá {{ user.username }}!</p>
+        <a href="{% url 'person_list'%}">Lista de clientes</a>
+        <a href="{% url 'person_new'%}">Novo Cliente</a>
         <a href="{% url 'logout' %}">Sair</a>
     {% else %}
         <a href="{% url 'login' %}">Entrar</a>
