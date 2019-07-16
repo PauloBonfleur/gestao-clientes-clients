@@ -13,7 +13,9 @@
     {% if user.is_authenticated %}
         <p>Olá {{ user.username }}!</p>
         <a href="{% url 'person_list'%}">Lista de clientes</a>
+        <p></p>
         <a href="{% url 'person_new'%}">Novo Cliente</a>
+        <p></p>
         <a href="{% url 'logout' %}">Sair</a>
     {% else %}
         <a href="{% url 'login' %}">Entrar</a>
