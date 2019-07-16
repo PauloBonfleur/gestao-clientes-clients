@@ -9,6 +9,7 @@
 </head>
 <body>
     <a href="{% url 'logout'%}">Sair</a>
+        <p>Olá {{ user.username }}</p>
     <ul>
         {% for person in persons %}
 
