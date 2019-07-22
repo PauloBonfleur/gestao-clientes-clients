@@ -1,28 +1,51 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <a href="{% url 'logout'%}">Sair</a>
-        <p>Olá {{ user.username }}!</p>
-    <ul>
-        {% for person in persons %}
+{% extends 'base.html'%}
 
-            <li>
-                <a href="{%url 'person_update' person.id%}">{{ person.first_name }}</a>
-                <a href="{%url 'person_delete' person.id%}">Deletar</a>
-            </li>
+{% block title %} Administração {% endblock %}
 
-        {% endfor %}
-    </ul>
+{% block main %}
+    <div class="container">
+      <div class="row">
+        <div class="col">
 
-    <br>
+        </div>
+            <div class="col-6">
+                <br>
+                <h3> <i class="fa fa-align-justify"></i> Lista de clientes:  </h3>
+                <br>
+        <ul class="list-group">
+            {% for person in persons %}
 
-    <a href="{% url 'person_new'%}">Novo Cliente</a>
-</body>
-</html>
+                <li class="list-group-item">
+                    <a href="{%url 'person_update' person.id%}">{{ person.Nome }}</a>
+                    <a href="{%url 'person_delete' person.id%}" class="trash-item">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </a>
+                </li>
+
+            {% endfor %}
+
+            <br>
+            <a href="{% url 'person_new'%}" class="btn btn-primary">
+                <i class="fa fa-user-plus"></i> Novo Cliente
+            </a>
+
+        </ul>
+        </div>
+
+        <div class="col">
+            <br>
+            <p>Olá {{ user.username }}!<a href="{% url 'logout'%} " class="btn btn-secondary">Sair <i class="fa fa-power-off"></i>
+            </a></p>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+
+{% block footer %}
+    <footer class="newfooter">
+      <div class="container">
+        <span class="text-muted">Desenvolvimento web com Django 2.x</span>
+      </div>
+    </footer>
+{% endblock %}
