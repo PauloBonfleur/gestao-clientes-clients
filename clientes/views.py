@@ -8,7 +8,22 @@ from .forms import Personform
 
 @login_required()
 def persons_list(request):
-    persons = Person.objects.all()
+    nome = request.GET.get('nome', None)
+    sobrenome = request.GET.get('sobrenome', None)
+
+    """
+    nome e sobrenome
+    nome ou sobrenome - O Pipe significa 'Ou'
+    """
+    if nome and sobrenome:
+        persons = Person.objects.filter(Sobrenome__icontains=sobrenome)
+    elif nome:
+        persons = Person.objects.filter(Nome__icontains=nome)
+    elif sobrenome:
+        persons = Person.objects.filter(Sobrenome__icontains=sobrenome)
+    else:
+        persons = Person.objects.all()
+
     return render(request, 'person.html', {'persons': persons})
 
 
